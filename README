@@ -1,0 +1,2 @@
+This are libs with cpf/cnpj model fields, form fields, generators and 'types' in standalone way that runs on Django >= 1.1.
+Check cpfcnpj for a example project, you can run tests with ./manage.py test webui and use models and forms as example.

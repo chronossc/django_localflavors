@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+		<title>Untitled Document</title>
+		<style type="text/css">
+			
+			table { }
+			
+			td { padding: 6px 3px; border-top: 2px solid black; }
+			
+			
+		</style>
+	</head>
+	<body>
+		<p>{{ msg }}</p>
+		<form method="POST" action="{{ request.path }}">
+			{% csrf_token %}
+			{{ form.as_p }}
+			
+			<input type="submit" value="sent" />
+			<input type="button" value="new" onclick="javascript: window.location.href='/'" />
+			
+		</form>
+		
+		<hr />
+		
+		<table>
+			<thead>
+				<td>ID</td>
+				<td>CNPJ</td>
+				<td>CPF</td>
+			</thead>
+			{% for item in data %}
+			<tr>
+				<td> <a href="/{{ item.id }}/">{{ item.id }}</a> </td>
+				<td> <a href="/{{ item.cnpj }}/">{{ item.cnpj }}</a> </td>
+				<td> <a href="/{{ item.cpf }}/">{{ item.cpf }}</a> </td>
+			</tr>
+			{% empty %}
+			<tr><td colspan="3">NO DATA FOUND! :P</td></tr>
+			{% endfor %}				
+		</table>
+	</body>
+</html>

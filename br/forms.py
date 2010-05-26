@@ -33,12 +33,14 @@ class BRCPFField(CharField):
         11-digit number.
         """
         value = super(BRCPFField, self).clean(value)
+        if not self.required and value in EMPTY_VALUES:
+            return value
 
         try:
             cpf = CPF(value)
         except ValueError,err:
             # CPF class already raise internal erros if cpf isn't valid
-            raise ValidationError(err.message)
+            raise ValidationError,err
 
         return value
 
@@ -61,12 +63,14 @@ class BRCNPJField(CharField):
         group of 14 characters.
         """
         value = super(BRCNPJField, self).clean(value)
+        if not self.required and value in EMPTY_VALUES:
+            return value
 
         try:
             cnpj = CNPJ(value)
         except ValueError,err:
             # CNPJ class already raise internal errors if CNPJ isn't valid
-            raise ValidationError(err.message)
+            raise ValidationError,err
 
         return value
 

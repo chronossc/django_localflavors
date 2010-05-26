@@ -129,6 +129,7 @@ class CNPJ(object):
     def __len__(self):
         return len(self.cnpj)
 
+    @property
     def is_valid(self):
         """
         Validates CNPJ with first 8 digits + filial digits and validation
